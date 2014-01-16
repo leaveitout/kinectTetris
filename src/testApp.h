@@ -5,6 +5,8 @@
 #include "ofxNI2.h"
 #include "ofxNiTE2.h"
 
+#include "ofxBox2d.h"
+
 class testApp : public ofBaseApp
 {
 public:
@@ -26,4 +28,8 @@ public:
 	
 	ofxNI2::Device device;
 	ofxNiTE2::UserTracker tracker;
+
+	ofxBox2d							box2d;
+	vector <ofPtr<ofxBox2dCircle> >		circles;     // default box2d circles
+	vector <ofPtr<ofxBox2dRect> >		boxes;       // defalut box2d rects
 };
