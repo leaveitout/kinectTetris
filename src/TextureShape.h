@@ -10,13 +10,9 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 
-static int hexColors[4] = {0x31988A, 0xFDB978, 0xFF8340, 0xE8491B};
-
 class TextureShape {
   
 public:
-    
-    
     ofImage    *    texturePtr;
     ofMesh          mesh;
     ofColor         color;
@@ -47,8 +43,6 @@ public:
         
         polyShape.setPhysics(3.0, 0.53, 0.1);
     	polyShape.create(world.getWorld());
-
-
     }
     void setTexture(ofImage * texture) {
         texturePtr = texture;

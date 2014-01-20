@@ -50,6 +50,6 @@ public:
 	// a vector of all the texture images
     vector <ofImage> textures;
 
-    // a vector of all the texture shapes
-    vector <ofPtr<TextureShape> > shapes;
+    // a list of all the texture shapes
+    list <ofPtr<TextureShape> > shapes;
 };

@@ -53,11 +53,9 @@ void testApp::setup()
 	// Box2d initilisation
     box2d.init();
     box2d.setGravity(0, 10);
-    box2d.createBounds();
+    box2d.createBounds(0.0F, -(float)ofGetHeight(), (float)ofGetWidth(), 3.0F*(float)ofGetHeight());
     box2d.setFPS(60.0);
     box2d.registerGrabbing();
-
-	
 }
 
 void testApp::exit()
@@ -70,6 +68,31 @@ void testApp::exit()
 void testApp::update()
 {
 	device.update();
+
+	list<ofPtr<TextureShape>>::iterator it = shapes.begin(); 
+	
+	while(it != shapes.end()) 
+	{
+		bool remove = true;
+
+		vector<ofPoint> &pts = it->get()->polyShape.getPoints();
+
+		for(vector<ofPoint>::iterator itPts = pts.begin(); itPts != pts.end(); ++itPts)
+			if(itPts->y <= ofGetHeight())
+			{
+				remove = false;
+				break;
+			}
+
+		if(remove)
+		{
+			it->get()->polyShape.destroy();
+			it = shapes.erase(it);
+		}
+		else
+			++it;
+	}
+
 
 	box2d.update(); 
 }
@@ -159,15 +182,13 @@ void testApp::draw()
 			boxes[i].get()->draw();
 	}
 
-	for (int i=0; i<shapes.size(); i++) {
-        shapes[i].get()->draw();
-    }
+	// Draw the objects
+	for(list<ofPtr<TextureShape>>::iterator iter = shapes.begin(); iter != shapes.end(); ++iter)
+		iter->get()->draw();
 
     // draw the ground
     box2d.drawGround(); 
 
-	
-        
 	if(drawDebug)
 	{
 		string info = "";
@@ -208,7 +229,7 @@ void testApp::keyPressed(int key)
 		float w = ofRandom(120, 150);
         float h = ofRandom(120, 150);
 		shapes.push_back(ofPtr<TextureShape>(new TextureShape));
-        shapes.back().get()->setTexture(&textures[textures.size() - 1 - (int)ofRandom(2)]);
+        shapes.back().get()->setTexture(&textures[(int)ofRandom(textures.size())]);
         shapes.back().get()->setup(box2d, mouseX, mouseY, w, h);
     }
 
