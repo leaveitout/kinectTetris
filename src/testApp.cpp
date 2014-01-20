@@ -8,6 +8,7 @@ void testApp::setup()
 {
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
+	//ofDisableAntiAliasing();
 	ofSetLogLevel(OF_LOG_NOTICE);
 	ofBackground(0);
 	//ofBackgroundHex(0xfdefc2);
@@ -40,12 +41,23 @@ void testApp::setup()
 	if(device.isRegistrationSupported())
 		device.setEnableRegistration();
 
+	// find all the texture files and load them
+    ofDirectory dir;
+    ofDisableArbTex();
+    int n = dir.listDir("textures");
+    for (int i=0; i<n; i++) {
+        textures.push_back(ofImage(dir.getPath(i)));
+    }
+    printf("%i Textures Loaded\n", (int)textures.size());
+
 	// Box2d initilisation
     box2d.init();
     box2d.setGravity(0, 10);
     box2d.createBounds();
     box2d.setFPS(60.0);
     box2d.registerGrabbing();
+
+	
 }
 
 void testApp::exit()
@@ -134,9 +146,6 @@ void testApp::draw()
 		ofDrawBitmapString("Right Hand", rightHandJointPositionScreen.x, rightHandJointPositionScreen.y);
 	}
 
-	
-	
-
 	// Draw box2d objects
 	for(int i=0; i<circles.size(); i++) {
 			ofFill();
@@ -149,6 +158,10 @@ void testApp::draw()
 			ofSetHexColor(0xBF2545);
 			boxes[i].get()->draw();
 	}
+
+	for (int i=0; i<shapes.size(); i++) {
+        shapes[i].get()->draw();
+    }
 
     // draw the ground
     box2d.drawGround(); 
@@ -175,19 +188,28 @@ void testApp::draw()
 void testApp::keyPressed(int key)
 {
 	if(key == 'c') {
-            float r = ofRandom(4, 20);
-            circles.push_back(ofPtr<ofxBox2dCircle>(new ofxBox2dCircle));
-            circles.back().get()->setPhysics(3.0, 0.53, 0.1);
-            circles.back().get()->setup(box2d.getWorld(), mouseX, mouseY, r);
+        float r = ofRandom(4, 20);
+        circles.push_back(ofPtr<ofxBox2dCircle>(new ofxBox2dCircle));
+        circles.back().get()->setPhysics(3.0, 0.53, 0.1);
+        circles.back().get()->setup(box2d.getWorld(), mouseX, mouseY, r);
                 
     }
         
     if(key == 'b') {
-            float w = ofRandom(120, 150);
-            float h = ofRandom(120, 150);
-            boxes.push_back(ofPtr<ofxBox2dRect>(new ofxBox2dRect));
-            boxes.back().get()->setPhysics(3.0, 0.25, 0.1);
-            boxes.back().get()->setup(box2d.getWorld(), mouseX, mouseY, w, h);
+		float w = ofRandom(120, 150);
+		float h = ofRandom(120, 150);
+		boxes.push_back(ofPtr<ofxBox2dRect>(new ofxBox2dRect));
+		boxes.back().get()->setPhysics(3.0, 0.25, 0.1);
+		boxes.back().get()->setup(box2d.getWorld(), mouseX, mouseY, w, h);
+    }
+
+	if(key == 's')
+	{
+		float w = ofRandom(120, 150);
+        float h = ofRandom(120, 150);
+		shapes.push_back(ofPtr<TextureShape>(new TextureShape));
+        shapes.back().get()->setTexture(&textures[textures.size() - 1 - (int)ofRandom(2)]);
+        shapes.back().get()->setup(box2d, mouseX, mouseY, w, h);
     }
 
 	if(key == 'd')
@@ -198,8 +220,6 @@ void testApp::keyPressed(int key)
 
 	if(key == 'x')
 		drawDebug = !drawDebug;
-
-
 }
 
 //--------------------------------------------------------------

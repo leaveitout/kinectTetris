@@ -341,6 +341,7 @@ xcopy /D /S /F /Y "$(NITE2_REDIST)\*" "$(OutDir)"
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="src\TextureShape.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

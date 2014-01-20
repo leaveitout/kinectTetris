@@ -7,6 +7,8 @@
 
 #include "ofxBox2d.h"
 
+#include "TextureShape.h"
+
 class testApp : public ofBaseApp
 {
 public:
@@ -44,4 +46,10 @@ public:
 	ofxBox2d							box2d;
 	vector <ofPtr<ofxBox2dCircle> >		circles;     // default box2d circles
 	vector <ofPtr<ofxBox2dRect> >		boxes;       // defalut box2d rects
+
+	// a vector of all the texture images
+    vector <ofImage> textures;
+
+    // a vector of all the texture shapes
+    vector <ofPtr<TextureShape> > shapes;
 };
