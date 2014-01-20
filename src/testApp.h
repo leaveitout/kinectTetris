@@ -29,6 +29,18 @@ public:
 	ofxNI2::Device device;
 	ofxNiTE2::UserTracker tracker;
 
+	ofImage depthImage;
+	ofImage colorImage;
+
+	ofxNI2::ColorStream color;
+
+	ofVec3f leftHandJointPositionScreen;
+	ofVec3f rightHandJointPositionScreen;
+
+	bool drawDepth;
+	bool drawTracker;
+	bool drawDebug;
+
 	ofxBox2d							box2d;
 	vector <ofPtr<ofxBox2dCircle> >		circles;     // default box2d circles
 	vector <ofPtr<ofxBox2dRect> >		boxes;       // defalut box2d rects
