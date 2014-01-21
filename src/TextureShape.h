@@ -53,10 +53,9 @@ public:
         
         mesh.clearVertices();
         vector<ofPoint> &pts = polyShape.getPoints();
-        /*for (int i=0; i<pts.size(); i++) {
-            mesh.addVertex(pts[i]);
-        }*/
 
+		// TODO: get rid of ugly array order
+		// Order found by experimentation
 		addFace(mesh, pts[3], pts[0], pts[1], pts[2]);
 
         ofSetColor(color);

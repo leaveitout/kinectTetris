@@ -31,6 +31,7 @@ public:
 	ofxNI2::Device device;
 	ofxNiTE2::UserTracker tracker;
 
+private:
 	ofImage depthImage;
 	ofImage colorImage;
 
@@ -47,9 +48,22 @@ public:
 	vector <ofPtr<ofxBox2dCircle> >		circles;     // default box2d circles
 	vector <ofPtr<ofxBox2dRect> >		boxes;       // defalut box2d rects
 
+	ofPtr<ofxBox2dRect>					leftHandBox;
+	ofPtr<ofxBox2dRect>					rightHandBox;
+
+	ofRectangle viewport;
+
+	double currTime;
+
 	// a vector of all the texture images
     vector <ofImage> textures;
 
     // a list of all the texture shapes
     list <ofPtr<TextureShape> > shapes;
+
+	// TODO: max this a const
+	float newObjectTimeMax;
+	float currTimef;
+	float prevTimef;
+	float newObjectTimeCounter;
 };
