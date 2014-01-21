@@ -41,13 +41,17 @@ public:
 
 		addTexCoords(mesh, nw, ne, se, sw);
         
-        polyShape.setPhysics(3.0, 0.53, 0.1);
+        //polyShape.setPhysics(3.0, 0.53, 0.1);
     	polyShape.create(world.getWorld());
     }
     void setTexture(ofImage * texture) {
         texturePtr = texture;
         texturePtr->getTextureReference().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
         texturePtr->getTextureReference().setTextureWrap(GL_REPEAT, GL_REPEAT);
+    }
+
+	void setPhysics(float density, float bounce, float friction) {
+        polyShape.setPhysics(density, bounce, friction);
     }
     void draw() {
         

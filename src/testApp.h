@@ -57,6 +57,7 @@ private:
 
 	// a vector of all the texture images
     vector <ofImage> textures;
+	vector <float>	 densities;
 
     // a list of all the texture shapes
     list <ofPtr<TextureShape> > shapes;

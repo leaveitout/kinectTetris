@@ -52,6 +52,17 @@ void testApp::setup()
     }
     printf("%i Textures Loaded\n", (int)textures.size());
 
+	// TODO: Use xml settings
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+	densities.push_back(3.0F);
+
 	newObjectTimeCounter = 0.0;
 	newObjectTimeMax = 4.0F;
 	currTimef = 0.0F;
@@ -166,6 +177,7 @@ void testApp::update()
 		float y = -h;
 		shapes.push_back(ofPtr<TextureShape>(new TextureShape));
         shapes.back().get()->setTexture(&textures[textureIndex]);
+		shapes.back().get()->setPhysics(densities.at(textureIndex), 0.25, 0.1);
         shapes.back().get()->setup(box2d, x, y, w, h);
 
 		newObjectTimeCounter -= newObjectTimeMax;
@@ -281,6 +293,7 @@ void testApp::keyPressed(int key)
         float h = ofRandom(120, 150);
 		shapes.push_back(ofPtr<TextureShape>(new TextureShape));
         shapes.back().get()->setTexture(&textures[(int)ofRandom(textures.size())]);
+		shapes.back().get()->setPhysics(3.0, 0.25, 0.1);
         shapes.back().get()->setup(box2d, mouseX, mouseY, w, h);
     }
 
