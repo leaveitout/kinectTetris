@@ -8,6 +8,7 @@
 #include "ofxBox2d.h"
 
 #include "TextureShape.h"
+#include "HandObject.h"
 
 class testApp : public ofBaseApp
 {
@@ -61,6 +62,10 @@ private:
 
     // a list of all the texture shapes
     list <ofPtr<TextureShape> > shapes;
+
+	// Hand box2d objects
+	HandObject leftHandObject;
+	HandObject rightHandObject;
 
 	// TODO: max this a const
 	float newObjectTimeMax;

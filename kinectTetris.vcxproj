@@ -211,6 +211,7 @@ xcopy /D /S /F /Y "$(NITE2_REDIST)\*" "$(OutDir)"
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
+    <ClCompile Include="src\HandObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
   </ItemGroup>
@@ -340,6 +341,7 @@ xcopy /D /S /F /Y "$(NITE2_REDIST)\*" "$(OutDir)"
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWrapper.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
+    <ClInclude Include="src\HandObject.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\TextureShape.h" />
   </ItemGroup>

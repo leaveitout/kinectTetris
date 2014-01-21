@@ -328,6 +328,9 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\HandObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -783,6 +786,9 @@
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClInclude>
     <ClInclude Include="src\TextureShape.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandObject.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -74,6 +74,12 @@ void testApp::setup()
     box2d.createBounds(0.0F, -(float)ofGetHeight(), (float)ofGetWidth(), 3.0F*(float)ofGetHeight());
     box2d.setFPS(60.0);
     box2d.registerGrabbing();
+
+	leftHandObject.setPhysics(3.0, 0.25, 0.1);
+	rightHandObject.setPhysics(3.0, 0.25, 0.1);
+
+	leftHandObject.setup(box2d.getWorld(), 0.0F, -(float)ofGetHeight(), 100.0F, 30.0F);
+	rightHandObject.setup(box2d.getWorld(), ofGetWidth()/2.0F, -(float)ofGetHeight(), 100.0F, 30.0F);
 }
 
 void testApp::exit()
@@ -87,6 +93,8 @@ void testApp::update()
 {
 	device.update();
 
+
+	// TODO: Add some tracked person management
 	for (int i = 0; i < tracker.getNumUser(); i++)
 	{
 		ofxNiTE2::User::Ref user = tracker.getUser(i);
@@ -105,15 +113,17 @@ void testApp::update()
 												ofGetHeight() - leftHandJointPositionScreen.y,
 												leftHandJointPositionScreen.z	);
 
+		leftHandObject.setPosition(leftHandJointPositionScreen.x, leftHandJointPositionScreen.y);
+
 		//ofDrawBitmapString("Left Hand", leftHandJointPositionScreen.x, leftHandJointPositionScreen.y);
 
-		if(leftHandBox.get()==NULL)
-			leftHandBox.get()->setup(box2d.getWorld(), leftHandJointPositionScreen.x, leftHandJointPositionScreen.y, 20, 20);
+		/*if(leftHandBox.get()==NULL)
+			leftHandBox.get()->setup(box2d.getWorld(), leftHandJointPositionScreen.x, leftHandJointPositionScreen.y, 20, 20);*/
 		/*else
-			leftHandBox.addAttractionPoint(leftHandJointPositionScreen.x, leftHandJointPositionScreen.y, 10.0F);
+			leftHandBox.addAttractionPoint(leftHandJointPositionScreen.x, leftHandJointPositionScreen.y, 10.0F); */
 	
 
-		// Righ Hand
+		// RightHand
 		const ofxNiTE2::Joint &rightHandJoint = user->getJoint(nite::JOINT_RIGHT_HAND);
 		nite::SkeletonJoint rightHandJointNite = rightHandJoint.get();
 		ofVec3f rightHandJointPosition(rightHandJointNite.getPosition().x, rightHandJointNite.getPosition().y, rightHandJointNite.getPosition().z);
@@ -123,6 +133,8 @@ void testApp::update()
 		rightHandJointPositionScreen = ofVec3f(	ofGetWidth() - rightHandJointPositionScreen.x,
 												ofGetHeight() - rightHandJointPositionScreen.y,
 												rightHandJointPositionScreen.z	);
+
+		rightHandObject.setPosition(rightHandJointPositionScreen.x, rightHandJointPositionScreen.y);
 
 		//ofDrawBitmapString("Right Hand", rightHandJointPositionScreen.x, rightHandJointPositionScreen.y);
 		/*if(!rightHandBox.get())
@@ -182,8 +194,6 @@ void testApp::update()
 
 		newObjectTimeCounter -= newObjectTimeMax;
     }
-
-
 
 	box2d.update(); 
 }
