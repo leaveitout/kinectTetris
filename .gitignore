@@ -35,7 +35,7 @@
 x64/
 build/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 
 # MSTest test Results
@@ -201,3 +201,11 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+#=========================
+# My custom rules
+# ========================
+![Bb]in/
+
+[Bb]in/*
+![Bb]in/data/
