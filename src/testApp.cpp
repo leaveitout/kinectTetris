@@ -71,7 +71,7 @@ void testApp::setup()
 	// Box2d initilisation
     box2d.init();
     box2d.setGravity(0, 10);
-    box2d.createBounds(0.0F, -(float)ofGetHeight(), (float)ofGetWidth(), 3.0F*(float)ofGetHeight());
+    box2d.createBounds(-(float)ofGetWidth(), -(float)ofGetHeight(), 2.0F*(float)ofGetWidth(), 3.0F*(float)ofGetHeight());
     box2d.setFPS(60.0);
     box2d.registerGrabbing();
 
