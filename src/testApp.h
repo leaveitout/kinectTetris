@@ -41,6 +41,9 @@ private:
 	ofVec3f leftHandJointPositionScreen;
 	ofVec3f rightHandJointPositionScreen;
 
+	bool leftHandClicked;
+	bool rightHandClicked;
+
 	bool drawDepth;
 	bool drawTracker;
 	bool drawDebug;
@@ -48,9 +51,6 @@ private:
 	ofxBox2d							box2d;
 	vector <ofPtr<ofxBox2dCircle> >		circles;     // default box2d circles
 	vector <ofPtr<ofxBox2dRect> >		boxes;       // defalut box2d rects
-
-	ofPtr<ofxBox2dRect>					leftHandBox;
-	ofPtr<ofxBox2dRect>					rightHandBox;
 
 	ofRectangle viewport;
 
